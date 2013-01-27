@@ -1,0 +1,93 @@
+<html>
+<head>
+  <title>validation</title>
+  <style>
+    section {
+      border:1px solid black;
+      width: 200px;
+      padding:10px;
+      margin:10px;
+      background: #ededed;
+      font-family:Helvetica;
+    }
+
+    h1 {
+      line-height: 1em;
+      font-size: 1em;
+    }
+
+    .error {
+      border:1px solid red;
+      background: rgba(255, 0, 0, .3);
+      padding:3px;
+      border-radius: 2px;
+      line-height: 1em;
+      display:none;
+      position:relative;
+      left:0;
+      top:50%
+    }
+
+    .narrow {
+      width: 50px;
+    }
+  </style>
+
+  <script type="text/javascript" src="../index.js"></script>
+</head>
+<body>
+<section id="component1">
+  <h1>Width</h1>
+  <p>
+    <div class="error" data-error="w">must be numeric!</div>
+    <input class="narrow" data-type="float,truthy" type="text" value="10.1" name="w" />
+  </p>
+</section>
+<section id="component2">
+  <h1>Height</h1>
+  <p>
+    <div class="error" data-error="h">must be numeric!</div>
+    <input class="narrow" data-type="float" type="text" value="5.0" name="h" />
+  </p>
+</section>
+<section id="component3">
+  <h1>Depth</h1>
+  <p> enabled: <input type="checkbox" name="enabled" data-type="bool" checked="checked" />
+
+    <div class="error" data-error="d">must be numeric!</div>
+    <input class="narrow" data-type="float" type="text" value="5.0" name="d" />
+  </p>
+</section>
+<section id="output">
+  <h1>Area</h1>
+  <span data-output="area">0.0</span>
+</section>
+
+<script type="text/javascript">
+
+  var c1 = tincture(document.getElementById('component1'));
+  var c2 = tincture(document.getElementById('component2'));
+  var c3 = tincture(document.getElementById('component3'));
+  var output = tincture(document.getElementById('output'));
+
+  output.compute([c1.w, c2.h, c3.enabled, c3.d], function(w, h, enabled, d) {
+    if (enabled) {
+      c3.d.el.removeAttribute('disabled');
+      this.area(w * h * d);
+    } else {
+      this.area(w * h);
+      c3.d.el.setAttribute('disabled', true);
+    }
+  });
+
+  output.compute([c3.enabled], function(enabled) {
+    var h1 = output.el.getElementsByTagName('h1')[0];
+    if (enabled) {
+      h1.innerHTML = "Volume";
+    } else {
+      h1.innerHTML = "Area";
+    }
+  });
+</script>
+</body>
+</html>
