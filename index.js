@@ -165,4 +165,8 @@ function tincture(el) {
   return ret;
 };
 
-module.exports = tincture;
+if (typeof module !== 'undefined') {
+  module.exports = tincture;
+} else {
+  window.tincture = tincture;
+}

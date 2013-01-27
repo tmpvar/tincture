@@ -12,10 +12,10 @@ bind to the inputs/outputs of a dom branch
 
 <div id="calculator">
   <p>
-    X: <input type="text" name="x" data-type="float" />
+    width: <input type="text" name="width" data-type="float" />
   </p>
   <p>
-    X: <input type="text" name="y" data-type="float" />
+    height: <input type="text" name="height" data-type="float" />
   </p>
   <p>
     Area: <span data-output="area"></span>
@@ -30,12 +30,12 @@ var tincture = require('tincture');
 
 var component = tincture(document.getElementById('calculator'));
 
-component.compute(['x', 'y'], function(x, y) {
-  this.area(x * y);
+component.compute(['width', 'height'], function(width, height) {
+  this.area(width * height);
 });
 
-component.x.change(function(val, prev) {
-  console.log('x just changed from', prev, 'to', val);
+component.width.change(function(val, prev) {
+  console.log('width just changed from', prev, 'to', val);
 });
 
 ```
