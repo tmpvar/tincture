@@ -69,7 +69,8 @@ function tincture(el) {
   var count = inputs.length;
   while(count--) {
     (function(el) {
-      var datatype = el.attributes.getNamedItem('data-type').value;
+      var dataTypeAttr = el.attributes.getNamedItem('data-type')
+      var datatype = (dataTypeAttr) ? dataTypeAttr.value : 'string';
       var name = el.name;
 
       var getset = ret[name] = function(val) {

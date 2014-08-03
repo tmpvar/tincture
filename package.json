@@ -2,7 +2,7 @@
   "name": "tincture",
   "version": "0.0.0",
   "description": "bind to the inputs/outputs of a dom branch",
-  "main": "index.js",
+  "main": "tincture.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
