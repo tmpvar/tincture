@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title>area calculator</title>
+  <script type="text/javascript" src="../tincture.js"></script>
+</head>
+<body>
+
+  <div id="calculator">
+    <p>
+      First: <input type="text" name="first" value="John" />
+    </p>
+    <p>
+      Last: <input type="text" name="last" value="Doe" />
+    </p>
+    <p>
+      Full Name: <span data-output="area"></span>
+    </p>
+  </div>
+
+  <script type="text/javascript">
+    var component = tincture(document.getElementById('calculator'));
+
+    component.compute(['first', 'last'], function(first, last) {
+      this.area(first + ' ' + last);
+    });
+  </script>
+
+</body>
+</html>
