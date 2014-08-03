@@ -115,7 +115,7 @@ function tincture(el) {
       var changeHandler = function() {
         var newValue = calculateValue(datatype, el);
 
-        if (isNaN(newValue)) {
+        if ((datatype === 'float' || datatype === 'integer') && isNaN(newValue)) {
           getset.error(newValue, getset.cachedValue);
           return;
         }
